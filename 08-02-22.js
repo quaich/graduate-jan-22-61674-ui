@@ -1,24 +1,18 @@
 //      Assignment - Whenever new object of Account class is created.
 //      Count the number of objects for Account class.
 
-var numberOfAccounts = 0
-
-function incrementAccount(){
-  numberOfAccounts++;
-}
-
 class Account{
   
   #accountNumber;
   #holderName;
   #balance;
+  static count = 0;
   
   constructor(accountNumber, holderName, balance){
     this.#accountNumber = accountNumber;
     this.#holderName = holderName;
     this.#balance = balance;
-
-    incrementAccount();
+    Account.count++;
   }
   
   // getter & setter methods
@@ -31,12 +25,19 @@ class Account{
    set accountHolderName(name) {  
      this.#holderName = name;
    }
+
+  deleteObject(){
+    Account.count += -1;
+    //delete object; Syntax error: Delete of an unqualified identifier in strict mode.
+    return(null);
+  }
 };
 
-const x = new Account(1234, "Jeff", 100);
+var x = new Account(1234, "Jeff", 100);
 console.log(x.accountHolderName);
-console.log(numberOfAccounts)
+console.log(Account.count);
+x = x.deleteObject();
 
-const y = new Account(1235, "Bob", 125);
+var y = new Account(1235, "Bob", 125);
 console.log(y.accountHolderName);
-console.log(numberOfAccounts)
+console.log(Account.count)
